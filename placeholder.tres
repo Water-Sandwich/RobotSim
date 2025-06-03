@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bl5pukb4p5a2p"]
+
+[ext_resource type="Texture2D" uid="uid://bxbr5quap6kgw" path="res://icon.svg" id="1_lin4x"]
+
+[resource]
+resource_name = "placeholder"
+albedo_texture = ExtResource("1_lin4x")
+uv1_scale = Vector3(100, 100, 100)

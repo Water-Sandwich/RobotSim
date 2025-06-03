@@ -1,0 +1,71 @@
+[gd_scene load_steps=5 format=3 uid="uid://caq1qcf358rjf"]
+
+[ext_resource type="Script" uid="uid://b153uc0gvx26c" path="res://car/car.gd" id="1_dxy33"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_24jkt"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_7822p"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2gitb"]
+
+[node name="Car" type="Node3D"]
+
+[node name="Body" type="Node3D" parent="."]
+
+[node name="VehicleBody" type="VehicleBody3D" parent="Body"]
+can_sleep = false
+script = ExtResource("1_dxy33")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/VehicleBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.581285, 0)
+shape = SubResource("BoxShape3D_24jkt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body/VehicleBody/CollisionShape3D"]
+mesh = SubResource("BoxMesh_7822p")
+
+[node name="VehicleWheel3D" type="VehicleWheel3D" parent="Body/VehicleBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.22102, 0.26347, 1.3026)
+use_as_steering = true
+wheel_roll_influence = 1.0
+suspension_stiffness = 30.0
+suspension_max_force = 3000.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body/VehicleBody/VehicleWheel3D"]
+transform = Transform3D(-4.37114e-08, -0.1, 0, 1, -4.37114e-09, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_2gitb")
+
+[node name="VehicleWheel3D2" type="VehicleWheel3D" parent="Body/VehicleBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.221, 0.263, 1.303)
+use_as_steering = true
+wheel_roll_influence = 1.0
+suspension_stiffness = 30.0
+suspension_max_force = 3000.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body/VehicleBody/VehicleWheel3D2"]
+transform = Transform3D(-4.37114e-08, -0.1, 0, 1, -4.37114e-09, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_2gitb")
+
+[node name="VehicleWheel3D3" type="VehicleWheel3D" parent="Body/VehicleBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.221, 0.263, -1.303)
+use_as_traction = true
+wheel_roll_influence = 1.0
+suspension_stiffness = 30.0
+suspension_max_force = 3000.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body/VehicleBody/VehicleWheel3D3"]
+transform = Transform3D(-4.37114e-08, -0.1, 0, 1, -4.37114e-09, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_2gitb")
+
+[node name="VehicleWheel3D4" type="VehicleWheel3D" parent="Body/VehicleBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.221, 0.263, -1.303)
+use_as_traction = true
+wheel_roll_influence = 1.0
+suspension_stiffness = 30.0
+suspension_max_force = 3000.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body/VehicleBody/VehicleWheel3D4"]
+transform = Transform3D(-4.37114e-08, -0.1, 0, 1, -4.37114e-09, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_2gitb")
+
+[node name="Camera3D" type="Camera3D" parent="Body/VehicleBody"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 3.76683, -6.74256)
