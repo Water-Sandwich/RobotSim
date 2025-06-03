@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://caq1qcf358rjf"]
+[gd_scene load_steps=6 format=3 uid="uid://caq1qcf358rjf"]
 
 [ext_resource type="Script" uid="uid://b153uc0gvx26c" path="res://car/car.gd" id="1_dxy33"]
+[ext_resource type="PackedScene" uid="uid://dhuerf3lebk5h" path="res://car/distanceSensor.tscn" id="2_dxy33"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_24jkt"]
 
@@ -12,15 +13,16 @@
 
 [node name="Body" type="Node3D" parent="."]
 
-[node name="VehicleBody" type="VehicleBody3D" parent="Body"]
+[node name="VehicleBody" type="VehicleBody3D" parent="Body" node_paths=PackedStringArray("distanceSensors")]
 can_sleep = false
 script = ExtResource("1_dxy33")
+distanceSensors = [NodePath("DistanceSensor"), NodePath("DistanceSensor2"), NodePath("DistanceSensor3")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/VehicleBody"]
+[node name="Chassis" type="CollisionShape3D" parent="Body/VehicleBody"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.581285, 0)
 shape = SubResource("BoxShape3D_24jkt")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Body/VehicleBody/CollisionShape3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body/VehicleBody/Chassis"]
 mesh = SubResource("BoxMesh_7822p")
 
 [node name="VehicleWheel3D" type="VehicleWheel3D" parent="Body/VehicleBody"]
@@ -68,4 +70,13 @@ transform = Transform3D(-4.37114e-08, -0.1, 0, 1, -4.37114e-09, 0, 0, 0, 1, 0, 0
 mesh = SubResource("CylinderMesh_2gitb")
 
 [node name="Camera3D" type="Camera3D" parent="Body/VehicleBody"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 3.76683, -6.74256)
+transform = Transform3D(-1, 0, -8.74228e-08, -5.17973e-08, 0.805577, 0.592491, 7.04258e-08, 0.592491, -0.805577, 0, 10.6432, -6.74256)
+
+[node name="DistanceSensor" parent="Body/VehicleBody" instance=ExtResource("2_dxy33")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.758788, 0.831503)
+
+[node name="DistanceSensor2" parent="Body/VehicleBody" instance=ExtResource("2_dxy33")]
+transform = Transform3D(0.819152, -0.573576, 2.50718e-08, 0, -4.37114e-08, -1, 0.573576, 0.819152, -3.58063e-08, 0, 0.758788, 0.831503)
+
+[node name="DistanceSensor3" parent="Body/VehicleBody" instance=ExtResource("2_dxy33")]
+transform = Transform3D(0.819152, 0.573576, -2.50718e-08, 0, -4.37114e-08, -1, -0.573576, 0.819152, -3.58063e-08, 0, 0.758788, 0.831503)
